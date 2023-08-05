@@ -5,9 +5,7 @@ const openai = require('./config/openaiConfig');
 const cors = require('cors');
 const axios = require('axios');
 
-app.use(cors({
-    origin: process.env.WEBSITE
-}))
+app.use(cors())
 //Initialize middleware
 app.use(express.json({extended: false}));
 app.use(bodyParser.urlencoded({extended: true}));
