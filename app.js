@@ -5,7 +5,9 @@ const openai = require('./config/openaiConfig');
 const cors = require('cors');
 const axios = require('axios');
 
-app.use(cors())
+app.use(cors({
+    origin: process.env.WEBSITE
+}))
 //Initialize middleware
 app.use(express.json({extended: false}));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,7 +17,7 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/api/generate-response', async (req, res) => {
-
+    res.header("Access-Control-Allow-Origin", process.env.WEBSITE)
     const { word, feeling, personality } = req.body;
     const description = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo',
