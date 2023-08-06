@@ -10,7 +10,7 @@ const axios = require('axios');
 // }))
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", process.env.WEBSITE);
     res.setHeader("Access-Control-Allow-Methods", "POST, GET");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     next();
