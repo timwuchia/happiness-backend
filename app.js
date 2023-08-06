@@ -10,7 +10,11 @@ app.use(cors())
 app.use(express.json({extended: false}));
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.post('/api/generate-response', async (req, res, next) => {
+app.get('/', async (req, res) => {
+    res.send('home page')
+})
+
+app.post('/api/generate-response', async (req, res) => {
 
     const { word, feeling, personality } = req.body;
     const description = await openai.createChatCompletion({
