@@ -5,13 +5,11 @@ const openai = require('./config/openaiConfig');
 const cors = require('cors');
 const axios = require('axios');
 
-app.use(cors())
-app.use((req,res,next)=>{
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-})
+app.use(cors({
+    origin: process.env.WEBSITE,
+    headers: ["Content-Type"],
+    credentials: true,
+}))
 
 //Initialize middleware
 app.use(express.json({extended: false}));
