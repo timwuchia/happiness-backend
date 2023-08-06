@@ -2,19 +2,11 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const openai = require('./config/openaiConfig');
-// const cors = require('cors');
+const cors = require('cors');
 const axios = require('axios');
 
-// app.use(cors({
-//     origin: process.env.WEBSITE
-// }))
+app.use(cors())
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", process.env.WEBSITE);
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
-})
 //Initialize middleware
 app.use(express.json({extended: false}));
 app.use(bodyParser.urlencoded({extended: true}));
